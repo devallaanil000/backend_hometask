@@ -1,0 +1,67 @@
+ 1. Introduction
+The PubMed Research Fetcher is a command-line tool designed to retrieve research papers from PubMed, extract non-academic author affiliations, and identify the corresponding author's email. The tool processes the data and outputs the results in a structured CSV file.
+
+🚀 2. Approach
+The project follows a modular design to ensure maintainability and scalability. The key components include:
+
+Fetching PubMed IDs
+Uses the Entrez API (esearch.fcgi) to fetch research paper IDs based on a given query.
+Retrieving Detailed Paper Information
+Calls the PubMed API (efetch.fcgi) to retrieve detailed XML data for each paper.
+Extracting Key Information
+Parses XML response using Python’s xml.etree.ElementTree.
+Extracts:
+PubMed ID
+Title
+Publication Date
+Non-academic authors
+Company affiliations
+Corresponding author email
+Saving Data to CSV
+Uses Pandas to save extracted data in CSV format.
+🛠️ 3. Methodology
+3.1 Data Extraction Process
+Query PubMed API with search terms.
+Retrieve PubMed IDs matching the search query.
+Fetch full paper details using the PubMed fetch API.
+Extract relevant fields from XML response.
+3.2 Identifying Non-Academic Authors
+Affiliations are checked for keywords (e.g., "Inc", "Ltd", "Pharma", "Biotech").
+If the affiliation matches a company, the author is classified as non-academic.
+3.3 Extracting Corresponding Author Emails
+Search for emails within affiliation sections of the XML response.
+If no email is found, return "N/A".
+📊 4. Results
+✅ Successfully retrieved and processed research papers.
+✅ Extracted PubMed IDs, Titles, Publication Dates, and Non-Academic Authors.
+✅ Detected Company Affiliations for authors.
+✅ Retrieved Corresponding Author Emails when available.
+✅ Saved results to results.csv for further analysis.
+
+🔹 Sample CSV Output
+PubmedID,Title,Publication Date,Non-Academic Authors,Company Affiliations,Corresponding Author Email
+39937588,Drug Discovery Insights,2025 Feb 12,John Doe,ABC Pharma Inc.,john.doe@abcpharma.com
+39937575,New Cancer Treatment,2025 Feb 12,Jane Smith,XYZ Biotech Ltd.,jane.smith@xyzbiotech.com
+39937573,Cancer Genomics,2025 Feb 28,None,None,N/A
+✅ 5. Key Features & Enhancements
+✔ Modular CLI using Typer
+✔ Efficient API Calls to PubMed
+✔ Filters non-academic authors using company keyword detection
+✔ Supports CSV export for further data analysis
+✔ Can be extended for advanced NLP-based author categorization
+
+🔚 6. Conclusion & Future Work
+This project successfully automates the retrieval and filtering of PubMed research papers. Future improvements could include:
+
+Enhanced company detection using machine learning.
+More robust email extraction from full-text sources.
+Integration with additional databases beyond PubMed.
+📎 How to Use
+1️⃣ Clone the repository:
+git clone https://github.com/devallaanil000/backend_hometask.git
+cd backend_hometask
+poetry install
+2️⃣ Run the CLI tool
+poetry run get-papers-list "cancer research" --file results.csv
+3️⃣ Check the output:
+cat results.csv
