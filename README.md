@@ -5,7 +5,7 @@ This is a **Python CLI tool** that fetches research papers from **PubMed** and e
 
 ## 🚀 Installation
 ### *
-*1️⃣ Clone the Repository**
+*1️ Clone the Repository**
 ```sh
 git clone https://github.com/devallaanil000/backend_hometask.git
 cd backend_hometask
